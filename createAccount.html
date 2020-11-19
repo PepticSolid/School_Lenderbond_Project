@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>
+		Login
+	</title>
+	<link rel="stylesheet" href="account.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="createAccount.js"></script>
+	</head>
+<body>
+
+    <h2>Welcome to LenderBond</h2>
+    <h3>What type of account would you like to create?</h3>
+
+    <form id ="accounts">
+        <input type="radio" id="business" name="account" value="Business" onclick="revealBusiness()">
+        <label for="business">Business Account</label>
+        <input type="radio" id="standard" name="account" value="Standard" onclick="revealStandard()">
+        <label for="standard">Standard Account</label>
+    </form>
+</body>
+</html>

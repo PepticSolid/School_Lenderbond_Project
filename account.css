@@ -1,0 +1,70 @@
+body 
+{
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+form
+{
+	text-align: center;
+}
+
+input[type=text], input[type=password], input[type=email]
+{
+	text-align: center;
+	width: 50%;
+    padding: 12px 20px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+button
+{
+	width: 25%;
+	padding: 10px;
+	background-color: blue;
+	color: white;
+}
+
+.button2
+{
+	background-color: red;
+}
+
+.button2:hover
+{
+	color: black;
+	background-color: red;
+}
+
+button:hover
+{
+	background-color: green;
+	opacity: .8;
+}
+
+h2 , h3
+{
+	text-align: center;
+	color: blue;
+}
+
+a 
+{
+	background-color: red;
+	margin-right: 20px;
+	color: white;
+	padding: 10px;
+	border: 1px solid black;
+}
+
+a:hover
+{
+	color: black;
+}
+
+label
+{
+	color: blue;
+}
+
