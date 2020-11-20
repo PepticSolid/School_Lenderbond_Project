@@ -18,6 +18,7 @@
   "homepage": "https://github.com/livanic/CPI360_LenderBond_Project#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
     "sqlite": "^4.0.17",
     "sqlite3": "^5.0.0"
   }
