@@ -1,196 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>LenderBond Team</title>
-    
-        <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
-    
-        <!-- Bootstrap core CSS -->
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-        <style>
-          .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-          }
-          
-        .right 
-        {
-           position: absolute;
-           right: 0px;
-           width: 300px;
-           padding: 10px;
-        }
-        
-        .left 
-        {
-          position: absolute;
-          left: 0px;
-          width: 300px;
-          padding: 10px;
-        }
-        
-        .center 
-        {
-            margin: auto;
-            width: 450px;
-            padding: 10px;
-            text-align: left;
-        }
-          @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-              font-size: 3.5rem;
-            }
 
-            
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+<head>
+  <title>LenderBond :: Welcome</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width device-width, initial-scale 1.0">
+  <!--css for loan-->
+  <link href="create_loan.css" rel="stylesheet">
+</head>
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
+<body class="content">
+  <div id = "wrapper">
+    <header>
+    <h1><a href="index.html">LenderBond</h1>
+    </header> 
+  
+  <nav>
+    <ul>
+      <!--THESE PAGES YOU SHOULD SEE IF YOU ARE NOT LOGGED IN -->
+      <li><a href="index.html">Home</a></li>
+      
+      <!--THESE PAGES YOU SHOULD SEE IF YOU ARE LOGGED IN -->
+      <li><a href=".html">My Profile</a></li>
+      <li><a href=".html">Loans</a></li>
+      <li><a href="create_loan.html">Create Loan</a></li>
+      <li><a href=".html">Logout</a></li> 
+    </ul>
+   </nav>
 
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
+<main>
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-          }
-        </style>
-        <!-- Custom styles for this template -->
-        <link href="carousel.css" rel="stylesheet">
-      </head>
-      <body>
-        <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">LenderBond Team</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href=".html">Loans</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="create_loan.html">Create a Loan</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href=".html">My Profile</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href=".html">Logout</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    </body>
-    </html>
-<body>
-
-  <p></p>
-
-  <form>
-  <label for="loan">Select a Loan Type:</label>
-<select name="loan" id="loan">
-  <option value="Standard Business Loan">Standard Business Loan</option>
-  <option value="Business Capital Loan">Business Capital Loan</option>
-  <option value="Startup Business Loan">Startup Business Loan</option>
-</select><br>
-
-<label for="APR">Enter an APR %:</label>
-  <input type="APR" id="APR" name="APR" value="%%%"><br>
-
-
-<label for="term">Select a Loan Term:</label>
-<select name="loan" id="loan">
-  <option value="1 year">1 year</option>
-  <option value="2 years">2 years</option>
-  <option value="3 years">3 years</option>
-  <option value="4 years">4 years</option>
-  <option value="5 years">5 years</option>
-  <option value="6 years">6 years</option>
-  <option value="7 years">7 years</option>
-</select><br>
-
-<label for="APR">Enter a Loan Ammount $:</label>
-  <input type="Amount" id="Amount" name="Amount" value="$$$"><br>
-<br>
-</form>
-
-<button id="myBtn">Submit</button>
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Are you sure you want to create a x Loan at x APR for x years for $x?</p>
+    <h5>
+        Create A Loan 
+    </h5>
     <form>
-      <input type="submit" value="Submit">
+
+        <p></p>
+        <label for="name">Enter Your Company Name:</label><br>
+        <p></p>
+            <input type="buisnessName" id="buisnessName" name="buisnessName" value="Company Name"><br>
+
+        <p></p>
+        <label for="link">Enter a Link To Your Companies' Website:</label><br>
+        <p></p>
+            <input type="link" id="link" name="link" value="https://"><br>
+
+        <p></p>
+        <label for="loan">Select a Loan Type:</label><br>
+        <p></p>
+        <select name="loanType" id="loanType">
+          <option value="Standard Business Loan">Standard Business Loan</option>
+          <option value="Business Capital Loan">Business Capital Loan</option>
+          <option value="Startup Business Loan">Startup Business Loan</option>
+        </select><br>
+
+        <p></p>
+        <label for="APR">Enter an APR %:</label><br>
+        <p></p>
+            <input type="APR" id="APR" name="APR" value="X.XX"><br>
+        
+
+        <p></p>
+        <label for="term">Select a Loan Term:</label><br>
+        <p></p>
+            <select name="loanYear" id="loanYear">
+              <option value="1 year">1 year</option>
+              <option value="2 years">2 years</option>
+              <option value="3 years">3 years</option>
+              <option value="4 years">4 years</option>
+              <option value="5 years">5 years</option>
+              <option value="6 years">6 years</option>
+              <option value="7 years">7 years</option>
+            </select><br>
+        
+    <p></p>
+    <label for="amount">Enter The Loan Amount ($):</label><br>
+    <p></p>
+        <input type="amount" id="amount" name="amount" value="0.00"><br>
+    
+    <p></p>
+    <label for="info">Enter Any Additional Info About Your Loan (Optinal):</label><br>
+    <p></p>
+    <textarea name="info" rows="10" cols="30">Description</textarea><br>
+    <p></p> 
+
     </form>
-  </div>
 
-  <script>
-    // Get the modal
-  var modal = document.getElementById("myModal");
+    <p></p>
+    <button id="myBtn">Submit</button>
 
-  // Get the button that opens the modal
-  var btn = document.getElementById("myBtn");
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
 
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Are you sure you want to submit?</p>
+      <form>
+        <button id="myBtn">Submit</button>
+      </form>
+    </div>
+  
+    </div>
 
-  // When the user clicks on the button, open the modal
-  btn.onclick = function() {
-    modal.style.display = "block";
-  }
+    <script>
+        var modal = document.getElementById("myModal");
+        
+        var btn = document.getElementById("myBtn");
+        
+        var span = document.getElementsByClassName("close")[0];
+        
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
+    
+  
+</main>
 
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
 
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-  </script>
+  
+
+   
 </body>
+
+
+ 
+
+<footer>Copyright &copy; 2020 LendLoaner <br>
+</footer>
+
+
+
+
 
 </html>

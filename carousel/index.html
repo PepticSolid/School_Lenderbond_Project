@@ -5,104 +5,99 @@
   <title>LenderBond :: Welcome</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width device-width, initial-scale 1.0">
+  <!--css for home page -->
   <link href="Welcome.css" rel="stylesheet">
+  <!--css for login button-->
+  <link rel="stylesheet" href="login.css">
 </head>
 
 <body class="content">
   <div id = "wrapper">
     <header>
-    <h1><a href="welcome.html">LenderLoans</h1>
+    <h1><a href="index.html">LenderBond</h1>
     </header> 
   
   <nav>
     <ul>
       <!--THESE PAGES YOU SHOULD SEE IF YOU ARE NOT LOGGED IN -->
-      <li><a href="welcome.html">Home</a></li>
-      <li><a href="createAccount.html">Create an Account</a></li>
-      <li><a href="loginPage.html">Login</a></li> 
-
+      <li><a href="index.html">Home</a></li>
+      
       <!--THESE PAGES YOU SHOULD SEE IF YOU ARE LOGGED IN -->
-      <li><a href="welcome.html">Home</a></li>
       <li><a href=".html">My Profile</a></li>
       <li><a href=".html">Loans</a></li>
-      <li><a href="create_loan.html">Create A Loan</a></li>
+      <li><a href="create_loan.html">Create Loan</a></li>
       <li><a href=".html">Logout</a></li> 
-       
-
-
-      <!-- THESE PAGES I HAVE HIDDEN FOR NOW-->
-      <!-- <li><a href="about_us.html">About Us</a></li>  
-      <li><a href="specifications.html">How our site will function</a></li>
-      <li><a href="project_plan.html">The Plan</a></li> 
-      <li><a href="team_members.html">Our Members</a></li> 
-      <li><a href="team_members.html">Our Members</a></li> 
-      -->
     </ul>
    </nav>
 
-   
+   <!--welcome holds login button and image-->
   <div id="welcome">
+    <button id="myBtn" class="loginButton">Login</button>
    </div>
   
+   <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p><label for="uname" method="POST"><b>Username</b></label>
+          <p></p>
+          <input type="text" placeholder="Enter Username" name="uname" required>
+          <p></p>
+          <label for="psw"><b>Password</b></label>
+          <p></p>
+          <input type="password" placeholder="Enter Password" name="psw" required>
+          <p></p>
+          <button type="submit">Login</button></p>
+          <p>Don't have an account yet? <a href="createAccount.html">Click Me!</a></p>
+          <p></p>
+    </div>
+  </div>
 
-   
+  <script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+  
+
   <main> 
+    
    <h2>How LenderBond can help you get ahead </h2>
 
       <section>
         <h3>What is LenderBond?</h3>
-        <p>LenderBond is a website that offers both public and business loans to its users. Users can choose which loans to take.</p>
+        <p>LenderBond is a website where loan companies can post their available loans and users can search for loans and find the best loan that fits their needs.</p>
       </section>
 
       <section>
-        <h3>How do our business loans work?</h3>
-        <p>Our business loans help your business purchase capital goods, equipement or consolidate debt. </p>
+        <h3>I am a user. How do I start searching for loans?</h3>
+        <p>If you haven't yet, create a standard account and login in. Then go to the loan page and you can search by loan type, APR, or loan amount. </p>
       </section>
 
       <section>
-        <h3>How do our public loans work?</h3>
-        <p>Our public loans act like a pot that anybody can take at anytime. This kind of a loan functions like at tip jar for the public that can be taken at anytime.</p>
+        <h3>I am a loan company. How do I post a loan?</h3>
+        <p>If you haven't yet, create a buisness account and login in. Then go to create a loan page and enter in the required loan info and submit. </p>
       </section>
 
         <div id="special">
           
               <h3>Most Popular Loan Packages</h3>
 
-              <p>A variety of loan packages are available. Take a look at our most recently available packages and apply to the one that most fits your needs!  </p>
+              <p>Currently, the three main loan types you can search for are Standard Business Loans, Business Capital Loans, or Startup Business Loans. 
+                Each APR, loan term, and loan amount are diffrent for each loan so if a loan dosen't fit your needs keep search because
+              there are many loans available.    </p>
 
-              <table>
-                <tr>
-                  <th>Name</th>
-                  <th>APR</th>
-                  <th>Loan term</th>
-                  <th>Loan amount</th>
-                </tr>
-
-                <tr>
-                  <td>Standard Business Loan</td>
-                  <td class="text">6.49% - 29.99%</td>
-                  <td>1-5 years</td>
-                  <td>Up to $25,000</td>
-                </tr>
-
-                <tr>
-                  <td>Business Capital Loan</td>
-                  <td class="text">3.49% - 19.99%</td>
-                  <td>2 - 7 years</td>
-                  <td>Up to $100,000</td>
-                </tr>
-
-                  <tr>
-                  <td>Startup Business Loan</td>
-                  <td class="text">7.99% - 35.97% </td>
-                  <td>3, 5 years</td>
-                  <td>Up to $35,000</td>
-                </tr>
-
-
-
-
-              </table>
+              <p>Don't have an account yet? <a href="createAccount.html">Click Me!</a></p>
 
         </div>
 
