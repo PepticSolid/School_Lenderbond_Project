@@ -1,0 +1,18 @@
+
+<h2>Message Topic</h2>
+<h3>{{topic.subjectTitle}}</h3>
+
+<ul>{{#each allMessages}} </ul>
+ <li> User ID: {{this.user_id}} Message Posted: {{this.MessageTimestamp}} </li>
+ <li> {{this.message}}  </li>
+ <br>
+  {{/each}}
+
+<form action="/newmessage" method="POST">
+   New Message Text:
+  <input type="hidden" id="topicid" name="topicID" value="{{topicID}}"> 
+  <input type="text" placeholder="New Message" name="newmessage">
+  <input type="submit" name ="submit" value="post new message">
+  </form>
+
+<a href='/messageboard'> Back to Message Board </a>

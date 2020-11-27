@@ -1,0 +1,25 @@
+
+<h2>Direct Messages</h2>
+
+{{#if error}}
+<div style="background: maroon; color: white;">
+ Error Encountered: {{error}}
+</div>
+<a href="/direct">Back</a>
+{{else}}
+<ul>Messages: {{#each MessageThread}} </ul>
+<br>
+ <li>Thread ID: {{this.Thread_id}}  User: {{this.Head_User}} Sent: {{this.MessageTimestamp}} </li><br>
+  <li>{{this.Message}}</li>
+  {{/each}}
+  <form action="/newdirectmessage" method="POST">
+  Send Message To:
+  <select name="SelectedUserID" id="cars">
+  {{#each ExportUserNames}}
+  <option value="{{.}}">{{.}}</option>
+  {{/each}}
+  </select>
+  <input type="text" placeholder="New Message" name="message">
+  <input type="submit" name ="submit" value="post new message">
+  </form>
+  {{/if}}
