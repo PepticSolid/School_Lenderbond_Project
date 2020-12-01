@@ -1,6 +1,6 @@
 /* 
 Author: Steven Katz 
-Date: 11/30/20
+Date: 12/1/20
 Description: Direct Message board for lenderbond project
 *
 */
@@ -43,7 +43,7 @@ app.use('/static', express.static(__dirname + '/static'));
 //});
 
 //function called when someone posts a new message
-app.post('/newdirectmessage', async(req,res) =>{
+exports.newDM =  async(req,res) =>{
   const db = await dbPromise;
   //var userID = req.cookies.userID;
   //'authToken'
@@ -61,7 +61,7 @@ app.post('/newdirectmessage', async(req,res) =>{
   }
   catch(e)
   {
-    res.redirect('home');
+    res.redirect('index.html');
   }
 
   userID = thisUser.user_id;
@@ -103,11 +103,12 @@ app.post('/newdirectmessage', async(req,res) =>{
   {
     return res.render('direct', { error: e })
   }
-      res.redirect("/direct") }
+      res.redirect("/direct") 
+}
 
-);
+
 //selects a direct message chain based on the user's id
-app.get("/direct",async (req,res) =>
+exports.direct = async (req,res) =>
 {
   //Temp cookie set
   //res.cookie('userID', 1);
@@ -119,6 +120,8 @@ app.get("/direct",async (req,res) =>
 
   var userID  = req.cookies.authToken;
   
+  
+
   try
   {
   var thisUser = await db.get("SELECT user_id FROM accountHolder WHERE token=?",userID);
@@ -129,7 +132,7 @@ app.get("/direct",async (req,res) =>
   }
   catch(e)
   {
-    res.redirect('home');
+    res.redirect('index.html');
   }
 
 
@@ -224,10 +227,10 @@ app.get("/direct",async (req,res) =>
       
   //display direct messages
   res.render("direct", {ComboArray, ExportUserNames});
-});
+};
 
 //selects messages between two users
-app.post('/select', async(req,res) =>
+exports.select = async(req,res) =>
 {
   const db = await dbPromise;
 
@@ -243,7 +246,7 @@ app.post('/select', async(req,res) =>
   }
   catch(e)
   {
-    res.redirect('home');
+    res.redirect('index.html');
   }
 
   //get data from post request
@@ -333,14 +336,9 @@ app.post('/select', async(req,res) =>
   //display direct messages
   res.render("direct", {ComboArray, ExportUserNames});
   
-});
+};
 
-
-app.get('/',(req,res) =>
-{
-    res.render("home");
-});
-
+/*
 //setup will migrate the database and set the server listening to port 8080
 const setup = async () => {
     const db = await dbPromise;
@@ -352,3 +350,5 @@ const setup = async () => {
   }
   
   setup();
+
+  */

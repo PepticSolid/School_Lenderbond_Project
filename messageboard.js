@@ -1,6 +1,6 @@
 /* 
 Author: Steven Katz 
-Date: 11/30/20
+Date: 12/1/20
 Description: Message board for lenderbond project
 *
 */
@@ -50,8 +50,12 @@ app.use('/static', express.static(__dirname + '/static'));
  * using the topic type, subject and the first post from the user's input
  * 
  */
-app.post('/newtopic', async(req,res) =>
+//app.post('/newtopic', 
+
+exports.newTopic = async (req,res) =>
 {
+
+  console.log("working");
   const db = await dbPromise;
   var userID  = req.cookies.authToken;
   var topicText  = req.body.newtopic;
@@ -69,7 +73,7 @@ app.post('/newtopic', async(req,res) =>
   }
   catch(e)
   {
-    res.redirect('home');
+    res.redirect('index.html');
   }
 
   userID = thisUser.user_id;
@@ -139,10 +143,10 @@ app.post('/newtopic', async(req,res) =>
   }
       //if sucessful redirect to newly created topic
       res.redirect("/messagetopic?id="+m); 
-});
+};
 
 //when a user is in a topic and wants to post a new message this function will be called
-app.post('/newmessage', async(req,res) =>
+exports.newMessage = async(req,res) =>
 {
   const db = await dbPromise;
   var topicID = req.body.topicID;
@@ -159,7 +163,7 @@ app.post('/newmessage', async(req,res) =>
   }
   catch(e)
   {
-    res.redirect('home');
+    res.redirect('index.html');
   }
 
   userID = thisUser.user_id;
@@ -182,10 +186,10 @@ app.post('/newmessage', async(req,res) =>
     return res.render("messageboard", {error: e});
   }
   res.redirect("/messagetopic?id="+topicID); 
-});
+};
 
 //this function gets and displays all the messages in a specific topic 
-app.get('/messagetopic', async(req,res) =>{
+exports.messageTopic = async(req,res) =>{
 
    const db = await dbPromise;
    var allMessages;
@@ -226,10 +230,10 @@ app.get('/messagetopic', async(req,res) =>{
    //sends data to be displayed in the message topic
    res.render("messagetopic",{allMessages, topic, topicID})
 
-});
+};
 
 //this function gets and displays the information for the message board
-app.get("/messageboard",async (req,res) =>
+exports.messageBoard = async (req,res) =>
 {
   //Temp cookie set
   //res.cookie('userID', 1);
@@ -249,7 +253,7 @@ app.get("/messageboard",async (req,res) =>
   }
   catch(e)
   {
-    res.redirect('home');
+    res.redirect('index.html');
   }
 
   userID = thisUser.user_id;
@@ -272,13 +276,9 @@ app.get("/messageboard",async (req,res) =>
   //prepare to display all threads
   res.render("messageboard",{allThreads});
 
-});
+};
 
-app.get('/',(req,res) =>
-{
-  res.render("home");
-});
-
+/*
 //setup will migrate the database and then the server start listing on port 8080
 const setup = async () => {
     const db = await dbPromise;
@@ -290,3 +290,5 @@ const setup = async () => {
   }
   
   setup();
+
+  */
