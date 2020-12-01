@@ -1,0 +1,30 @@
+{
+  "name": "cpi360_lenderbond_project",
+  "version": "1.0.0",
+  "description": "Final Project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -r esm index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/livanic/CPI360_LenderBond_Project.git"
+  },
+  "author": "Liam I, Steven K, Daniel Y, Jack M, Tanner E, Tyler K",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/livanic/CPI360_LenderBond_Project/issues"
+  },
+  "homepage": "https://github.com/livanic/CPI360_LenderBond_Project#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.5",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "nodemon": "^2.0.6",
+    "sqlite": "^4.0.17",
+    "sqlite3": "^5.0.0",
+    "uuid": "^8.3.1"
+  }
+}
