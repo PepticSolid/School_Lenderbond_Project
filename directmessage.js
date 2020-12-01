@@ -32,14 +32,39 @@ app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }));
 app.use('/static', express.static(__dirname + '/static'));
 
-//Get From Cookie in final
-const userID = 1; //change to test different values for user id 
-//Get From Cookie in final
+//Get From Cookie
+
+//Test Function
+//app.get('/cookieSet', async(req,res) =>
+//{
+    //res.cookie('authToken', 'bc78c841-50de-4a2a-a8a5-7f55fc65b839');
+    ///console.log(req.cookies.authToken);
+    //res.render('direct');
+//});
 
 //function called when someone posts a new message
 app.post('/newdirectmessage', async(req,res) =>{
   const db = await dbPromise;
   //var userID = req.cookies.userID;
+  //'authToken'
+  
+  var userID  = req.cookies.authToken;
+  
+
+  try
+  {
+  var thisUser = await db.get("Select user_id FROM accountHolder WHERE token=?", userID);
+  if(!thisUser)
+  {
+     throw "User not found";
+  }
+  }
+  catch(e)
+  {
+    res.redirect('home');
+  }
+
+  userID = thisUser.user_id;
   var Head_User = userID;
   var usernameText = req.body.SelectedUserID;
   
@@ -49,23 +74,9 @@ app.post('/newdirectmessage', async(req,res) =>{
   {
     //gets userID using their username
   var userId = await db.get('SELECT user_id FROM accountHolder WHERE username =?',usernameText);
-  if(!userID)
+  if(!userId)
     {
      throw "Username does not match existing username";
-    }
-  }
-  catch(e)
-  {
-    return res.render('direct', { error: e })
-  }
-
-  try
-  {
-    //gets thread id using their user id
-  var ThreadID =  await db.get("SELECT Thread_id FROM DirectMessages WHERE Head_User =(?) ORDER BY DM_ID ASC", userId.user_id);
-  if(!ThreadID)
-    {
-      throw "Invalid user id";
     }
   }
   catch(e)
@@ -81,8 +92,8 @@ app.post('/newdirectmessage', async(req,res) =>{
       throw "blank message" ;
     }
     //inserts a new message into the direct messages table
-  var result = await db.run('INSERT INTO DirectMessages (Head_User,MessageTimestamp,Message,Other_User,Thread_id) VALUES (?, ?, ?, ?,?);',
-  Head_User,new Date().toUTCString(),req.body.message,userId.user_id,ThreadID.Thread_id);
+  var result = await db.run('INSERT INTO DirectMessages (Head_User,MessageTimestamp,Message,Other_User) VALUES (?, ?, ?, ?);',
+  Head_User,new Date().toUTCString(),req.body.message,userId.user_id);
   if(!result)
     {
       throw "Unable to insert message" ;
@@ -103,12 +114,30 @@ app.get("/direct",async (req,res) =>
   //Set Cookie Externally in final
   //var userID = req.cookies.userID;
 
-    const db = await dbPromise;
+  const db = await dbPromise;
+  
+
+  var userID  = req.cookies.authToken;
+  
+  try
+  {
+  var thisUser = await db.get("SELECT user_id FROM accountHolder WHERE token=?",userID);
+  if(!thisUser)
+  {
+     throw "User not found";
+  }
+  }
+  catch(e)
+  {
+    res.redirect('home');
+  }
+
+
     var DirectMessageThread = [];
     try
     {
       //gets message thread from database
-    DirectMessageThread = await db.all("SELECT * FROM DirectMessages WHERE (Head_User =? OR Other_User =?) ORDER BY DM_ID ASC", userID, userID);
+    DirectMessageThread = await db.all("SELECT * FROM DirectMessages WHERE (Head_User =? OR Other_User =?) ORDER BY DM_ID ASC", thisUser.user_id, thisUser.user_id);
     
       
      
@@ -141,12 +170,10 @@ app.get("/direct",async (req,res) =>
     var ExportUserID = [];
     var ExportTimeStamp = [];
 
-
-    var ExportUserStack = [];
     for(var q = 0;q < usernameReceived.length; q++)
     {
       //remove own user name from recipients 
-      if(usernameReceived[q].user_id != userID)
+      if(usernameReceived[q].user_id != thisUser.user_id)
       {
         ExportUserNames[q] = usernameReceived[q].username;
       }
@@ -203,6 +230,22 @@ app.get("/direct",async (req,res) =>
 app.post('/select', async(req,res) =>
 {
   const db = await dbPromise;
+
+  var userID  = req.cookies.authToken;
+  
+  try
+  {
+  var thisUser = await db.get("Select user_id FROM accountHolder WHERE token=?", userID);
+  if(!thisUser)
+  {
+     throw "User not found";
+  }
+  }
+  catch(e)
+  {
+    res.redirect('home');
+  }
+
   //get data from post request
   var otherUserName = req.body.SelectMessages;
   var DirectMessageThread = [];
@@ -211,7 +254,7 @@ app.post('/select', async(req,res) =>
 
     //check where user have messages together
     DirectMessageThread = await db.all(`SELECT * FROM DirectMessages WHERE (Head_User =? AND Other_User =?) 
-    OR ((Head_User =? AND Other_User =?)) ORDER BY DM_ID ASC`, userID, OtherUserId.user_id,OtherUserId.user_id, userID);
+    OR ((Head_User =? AND Other_User =?)) ORDER BY DM_ID ASC`, thisUser.user_id, OtherUserId.user_id,OtherUserId.user_id, thisUser.user_id);
 
     try
     {
@@ -237,7 +280,7 @@ app.post('/select', async(req,res) =>
     for(var q = 0;q < usernameReceived.length; q++)
     {
       //remove own user name from recipients 
-      if(usernameReceived[q].user_id != userID)
+      if(usernameReceived[q].user_id != thisUser.user_id)
       {
         ExportUserNames[q] = usernameReceived[q].username;
       }

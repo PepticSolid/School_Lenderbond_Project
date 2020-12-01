@@ -34,10 +34,16 @@ app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }));
 app.use('/static', express.static(__dirname + '/static'));
 
-//Gets the user's id from a cookie
-//Get From Cookie in final
-var userID = 1;
-//Get From Cookie in final
+
+//Test Function
+//app.get('/cookieSet', async(req,res) =>
+//{
+    //res.cookie('authToken', 'bc78c841-50de-4a2a-a8a5-7f55fc65b839');
+    ///console.log(req.cookies.authToken);
+    //res.render('direct');
+//});
+
+
 
 /**
  * function for creating an new topic on the message board
@@ -47,13 +53,28 @@ var userID = 1;
 app.post('/newtopic', async(req,res) =>
 {
   const db = await dbPromise;
- // var userID = req.cookies.userID;
+  var userID  = req.cookies.authToken;
   var topicText  = req.body.newtopic;
   var topicType  = req.body.TopicSubject;
   var newMessage = req.body.newMessage; 
   var newTopicId;
   
-  //error handling
+  try
+  {
+  var thisUser = await db.get("Select user_id FROM accountHolder WHERE token=?", userID);
+  if(!thisUser)
+  {
+     throw "User not found";
+  }
+  }
+  catch(e)
+  {
+    res.redirect('home');
+  }
+
+  userID = thisUser.user_id;
+
+  
   try
   {
     if(topicText == "")
@@ -126,6 +147,22 @@ app.post('/newmessage', async(req,res) =>
   const db = await dbPromise;
   var topicID = req.body.topicID;
   var newMessage = req.body.newmessage;
+  var userID  = req.cookies.authToken;
+
+  try
+  {
+  var thisUser = await db.get("Select user_id FROM accountHolder WHERE token=?", userID);
+  if(!thisUser)
+  {
+     throw "User not found";
+  }
+  }
+  catch(e)
+  {
+    res.redirect('home');
+  }
+
+  userID = thisUser.user_id;
 
   try
   {
@@ -198,9 +235,25 @@ app.get("/messageboard",async (req,res) =>
   //res.cookie('userID', 1);
   //Set Cookie Externally in final
   //var userID = req.cookies.userID;
-
-
+  var userID  = req.cookies.authToken;
   const db = await dbPromise;
+  
+
+  try
+  {
+  var thisUser = await db.get("Select user_id FROM accountHolder WHERE token=?", userID);
+  if(!thisUser)
+  {
+     throw "User not found";
+  }
+  }
+  catch(e)
+  {
+    res.redirect('home');
+  }
+
+  userID = thisUser.user_id;
+
   var allThreads;
   try
   {
