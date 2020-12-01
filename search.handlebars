@@ -1,6 +1,16 @@
 <h1>Search page</h1>
 
 <form action="/search" method="POST">
-    <input type="search" placeholder="search" name="search" />
+    <input type="text" placeholder="search" name="search" />
     <button type="submit">search</button>
 </form>
+
+<u1>
+    {{#each search}}
+    <p1><b>Loaner:</b></p1><br>
+    {{this.username}} <br>
+    <p1><b>Loan Details:</b></p1> <br>
+    {{this.email}} <br>
+    {{/each}}
+</u1>
+
