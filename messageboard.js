@@ -1,6 +1,6 @@
 /* 
 Author: Steven Katz 
-Date: 11/27/20
+Date: 11/30/20
 Description: Message board for lenderbond project
 *
 */
@@ -66,7 +66,7 @@ app.post('/newtopic', async(req,res) =>
      throw "message left blank"; 
     }
     //tries to insert a new topic into the message board
-  var result = await db.run('INSERT INTO messageBoard (subjectTitle,dateCreated,threadTopic) VALUES (?, ?, ?);', topicText, new Date().toISOString(), topicType);
+  var result = await db.run('INSERT INTO messageBoard (subjectTitle,dateCreated,threadTopic) VALUES (?, ?, ?);', topicText, new Date().toUTCString(), topicType);
   if(!result)
     {
         throw "Unable to insert message into message board";
@@ -80,7 +80,7 @@ app.post('/newtopic', async(req,res) =>
   try
   {
   //gets all the thread ids
-  newTopicId = await db.all("SELECT MBthred_id FROM MBmessages");
+  newTopicId = await db.all("SELECT MBthred_id FROM messageBoard");
   if(!newTopicId)
     {
       throw "Unable select thread from messages";
@@ -99,8 +99,6 @@ app.post('/newtopic', async(req,res) =>
   
   //max value of thread ID is found
   var m = Math.max(...array);
-  //then incremented by one to get the new Mbthred_id that will be inserted
-  m++;
 
   try
   {
@@ -108,8 +106,7 @@ app.post('/newtopic', async(req,res) =>
     {
       throw "Message field left blank"; 
     }
-    //try and insert the first post into the message board
-  var InsertResult = await db.run('INSERT INTO MBmessages (MBthred_id,user_id,MessageTimestamp,message) VALUES (?, ?, ?, ?);', m,userID, new Date().toISOString(), newMessage);
+  var InsertResult = await db.run('INSERT INTO MBmessages (MBthred_id,user_id,MessageTimestamp,message) VALUES (?, ?, ?, ?);', m,userID, new Date().toUTCString(), newMessage);
   if(!InsertResult)
     {
       throw "unable to insert record into messages";
@@ -137,7 +134,7 @@ app.post('/newmessage', async(req,res) =>
     throw "Message left blank";
   }
   //tries to insert the message into the current thread
-  var MessageResult = await db.run('INSERT INTO MBmessages (MBthred_id,user_id,MessageTimestamp,message) VALUES (?, ?, ?, ?);', topicID,userID, new Date().toISOString(), newMessage);
+  var MessageResult = await db.run('INSERT INTO MBmessages (MBthred_id,user_id,MessageTimestamp,message) VALUES (?, ?, ?, ?);', topicID,userID, new Date().toUTCString(), newMessage);
   if(!MessageResult)
     {
       throw "Message could not be inserted";
@@ -187,6 +184,8 @@ app.get('/messagetopic', async(req,res) =>{
    
    
    var topicID = req.query.id;
+
+ 
    //sends data to be displayed in the message topic
    res.render("messagetopic",{allMessages, topic, topicID})
 
