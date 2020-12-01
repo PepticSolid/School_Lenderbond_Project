@@ -7,14 +7,25 @@
 </div>
 <a href="/direct">Back</a>
 {{else}}
-<ul>Messages: {{#each MessageThread}} </ul>
+
+<form action="/select" method="POST">
+See Messages With:
+<select name="SelectMessages" id="other">
+  {{#each ExportUserNames}}
+  <option value="{{.}}">{{.}}</option>
+  {{/each}}
+  </select>
+  <input type="submit" name ="submit" value="Select">
+  </form>
+
+<ul>Messages: {{#each ComboArray}} </ul>
 <br>
- <li>Thread ID: {{this.Thread_id}}  User: {{this.Head_User}} Sent: {{this.MessageTimestamp}} </li><br>
+ <li> User: {{this.username}} User ID: {{this.user_id}} Sent to User ID: {{this.Other_User}}  Sent On: {{this.MessageTimestamp}} </li><br>
   <li>{{this.Message}}</li>
   {{/each}}
   <form action="/newdirectmessage" method="POST">
   Send Message To:
-  <select name="SelectedUserID" id="cars">
+  <select name="SelectedUserID" id="users">
   {{#each ExportUserNames}}
   <option value="{{.}}">{{.}}</option>
   {{/each}}
