@@ -21,7 +21,7 @@
     <ul>
       <!--THESE PAGES YOU SHOULD SEE IF YOU ARE NOT LOGGED IN -->
       <li><a href="index.html">Home</a></li>
-      
+      <li><a id="loginLink" class="loginButton">Login</a></li>
       <!--THESE PAGES YOU SHOULD SEE IF YOU ARE LOGGED IN -->
       <li><a href=".html">My Profile</a></li>
       <li><a href=".html">Loans</a></li>
@@ -30,9 +30,9 @@
     </ul>
    </nav>
 
-   <!--welcome holds login button and image-->
+   <!--welcome holds the image-->
   <div id="welcome">
-    <button id="myBtn" class="loginButton">Login</button>
+    
    </div>
   
    <div id="myModal" class="modal">
@@ -54,7 +54,7 @@
 
   <script>
     var modal = document.getElementById("myModal");
-    var btn = document.getElementById("myBtn");
+    var btn = document.getElementById("loginLink");
     var span = document.getElementsByClassName("close")[0];
     btn.onclick = function() {
       modal.style.display = "block";
