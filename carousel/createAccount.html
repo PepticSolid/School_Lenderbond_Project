@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-	<title>
-		Login
-	</title>
-	<link rel="stylesheet" href="account.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="createAccount.js"></script>
-	</head>
-<body>
-
-    <h2>Welcome to LenderBond</h2>
+<!-- <h2>Welcome to LenderBond</h2>
     <h3>What type of account would you like to create?</h3>
 
     <form id ="accounts">
@@ -19,5 +7,77 @@
         <input type="radio" id="standard" name="account" value="Standard" onclick="revealStandard()">
         <label for="standard">Standard Account</label>
     </form>
-</body>
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>
+		Login
+	</title>
+    <link href="create_loan.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="createAccount.js"></script>
+	</head>
+    <body class="content">
+        <div id = "wrapper">
+          <header>
+          <h1><a href="index.html">LenderBond</h1>
+          </header> 
+        
+        <nav>
+          <ul>
+            <!--THESE PAGES YOU SHOULD SEE IF YOU ARE NOT LOGGED IN -->
+            <li><a href="index.html">Home</a></li>
+            <!--THESE PAGES YOU SHOULD SEE IF YOU ARE LOGGED IN -->
+            <li><a href=".html">My Profile</a></li>
+            <li><a href=".html">Loans</a></li>
+            <li><a href="create_loan.html">Create Loan</a></li>
+            <li><a href=".html">Logout</a></li> 
+          </ul>
+         </nav>
+      
+      <main>
+        <form id ="accounts">
+            <input type="radio" id="business" name="account" value="Business" onclick="revealBusiness()">
+            <label for="business">Business Account</label>
+            <input type="radio" id="standard" name="account" value="Standard" onclick="revealStandard()">
+            <label for="standard">Standard Account</label>
+        </form>
+      
+          <!-- The Modal -->
+          <div id="myModal" class="modal">
+      
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close">&times;</span>
+          </div>
+        
+          </div>
+      
+          <script>
+              var modal = document.getElementById("myModal");
+              
+              var btn = document.getElementById("myBtn");
+              
+              var span = document.getElementsByClassName("close")[0];
+              
+              btn.onclick = function() {
+                modal.style.display = "block";
+              }
+              
+              span.onclick = function() {
+                modal.style.display = "none";
+              }
+              
+              window.onclick = function(event) {
+                if (event.target == modal) {
+                  modal.style.display = "none";
+                }
+              }
+              </script>
+          
+        
+      </main>
+      </body>
 </html>

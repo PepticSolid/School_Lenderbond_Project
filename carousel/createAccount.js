@@ -31,7 +31,7 @@ function revealBusiness()
             "<input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>"+
             "<p></p>"+
             "<a href=\"index.html\">Back</a>"+
-            "<button type=\"submit\">Create Business Account</button>";
+            "<button type=\"submit\">Create Account</button>";
 
 
 
@@ -66,6 +66,6 @@ function revealStandard()
             "<input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>"+
             "<p></p>"+
             "<a href=\"index.html\">Back</a>"+
-            "<button type=\"submit\">Create Business Account</button>";
+            "<button type=\"submit\">Create Account</button>";
 }
 
