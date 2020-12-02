@@ -1,0 +1,36 @@
+
+<h2>Direct Messages</h2>
+
+{{#if error}}
+<div style="background: maroon; color: white;">
+ Error Encountered: {{error}}
+</div>
+<a href="/direct">Back</a>
+{{else}}
+
+<form action="/select" method="POST">
+See Messages With:
+<select name="SelectMessages" id="other">
+  {{#each ExportUserNames}}
+  <option value="{{.}}">{{.}}</option>
+  {{/each}}
+  </select>
+  <input type="submit" name ="submit" value="Select">
+  </form>
+
+<ul>Messages: {{#each ComboArray}} </ul>
+<br>
+ <li> User: {{this.username}} User ID: {{this.user_id}} Sent to User ID: {{this.Other_User}}  Sent On: {{this.MessageTimestamp}} </li><br>
+  <li>{{this.Message}}</li>
+  {{/each}}
+  <form action="/newdirectmessage" method="POST">
+  Send Message To:
+  <select name="SelectedUserID" id="users">
+  {{#each ExportUserNames}}
+  <option value="{{.}}">{{.}}</option>
+  {{/each}}
+  </select>
+  <input type="text" placeholder="New Message" name="message">
+  <input type="submit" name ="submit" value="post new message">
+  </form>
+  {{/if}}
