@@ -1,4 +1,24 @@
+<body class="content">
+  <div id = "wrapper">
+    <header>
+    <h1><a href="index.html">LenderBond</h1>
+    <link rel="stylesheet" href="\static\messageboard.css">
+    </header> 
+  
+  <nav>
+    <ul>
+      <!--THESE PAGES YOU SHOULD SEE IF YOU ARE NOT LOGGED IN -->
+      <li><a href="index.html">Home</a></li>
+      
+      <!--THESE PAGES YOU SHOULD SEE IF YOU ARE LOGGED IN -->
+      <li><a href=".html">My Profile</a></li>
+      <li><a href=".html">Loans</a></li>
+      <li><a href="create_loan.html">Create Loan</a></li>
+      <li><a href=".html">Logout</a></li> 
+    </ul>
+   </nav>
 
+<main>
 <h2>Message Topic</h2>
 <h3>{{topic.subjectTitle}}</h3>
 
@@ -16,3 +36,18 @@
   </form>
 
 <a href='/messageboard'> Back to Message Board </a>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <p></p>
+        <form>
+        <button id="myBtn">Submit</button>
+        </form>
+        </div>
+  
+    </div>
+  
+</main>

@@ -1,7 +1,25 @@
+ <!--<body class="content">-->
+  <div id = "wrapper">
+    <header>
+    <h1><a href="index.html">LenderBond</h1>
+    <link rel="stylesheet" href="\static\messageboard.css">
+    </header> 
+  
+  <nav>
+    <ul>
+      <!--THESE PAGES YOU SHOULD SEE IF YOU ARE NOT LOGGED IN-->
+      <li><a href="index.html">Home</a></li>
+      
+      <!--THESE PAGES YOU SHOULD SEE IF YOU ARE LOGGED IN-->
+      <li><a href=".html">My Profile</a></li>
+      <li><a href=".html">Loans</a></li>
+      <li><a href="create_loan.html">Create Loan</a></li>
+      <li><a href=".html">Logout</a></li> 
+    </ul>
+   </nav>
 
-<h2>Direct Messages</h2>
-
-{{#if error}}
+<main> 
+  {{#if error}}
 <div style="background: maroon; color: white;">
  Error Encountered: {{error}}
 </div>
@@ -34,3 +52,19 @@ See Messages With:
   <input type="submit" name ="submit" value="post new message">
   </form>
   {{/if}}
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <p></p>
+        <form>
+        <button id="myBtn">Submit</button>
+        </form>
+        </div>
+  
+    </div>
+  
+</main>
+
