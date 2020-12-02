@@ -1,16 +1,14 @@
-<h1>Search page</h1>
-
-<form action="/search" method="POST">
-    <input type="text" placeholder="search" name="search" />
-    <button type="submit">search</button>
-</form>
+<h1>Loan Search page</h1>
 
 <u1>
     {{#each search}}
     <p1><b>Loaner:</b></p1><br>
-    {{this.username}} <br>
+    {{this.loan_name}} <br>
     <p1><b>Loan Details:</b></p1> <br>
-    {{this.email}} <br>
+    {{this.init_currency}} <br>
+    {{this.interest_rate}} <br>
+    {{this.loan_amount}} <br>
+    {{this.loan_type}} <br>
+    {{this.loan_term}} <br>
     {{/each}}
 </u1>
-
