@@ -28,6 +28,20 @@ app.get('/', (req, res) => {
     res.send("Hello Test");
 })
 
+//import other js.file functions 
+const messageboard = require('./messageboard');
+const directMessage = require('./directmessage');
+
+//handle requests using exported functions
+app.post("/newtopic", messageboard.newTopic);
+app.post("/newmessage", messageboard.newMessage);
+app.get("/messagetopic", messageboard.messageTopic);
+app.get("/messageboard", messageboard.messageBoard);
+
+app.post("/newdirectmessage", directMessage.newDM);
+app.get("/direct", directMessage.direct);
+app.post("/select", directMessage.select);
+
 app.get('/accounts', async (req,res) => {
     const db = await dbPromise;
     const {
