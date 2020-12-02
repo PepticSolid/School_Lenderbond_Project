@@ -1,0 +1,29 @@
+{{#if error}}
+<div style="background: maroon; color: rgb(255, 255, 255);">
+    {{error}}
+</div>
+{{/if}}
+
+<h1>Business Registration</h1>
+<a href="/">Go Back</a>
+
+<form action='/register' method="POST">
+
+    <label for="company_name">Company Name:</label><br>
+    <input type="text" placeholder="company_name" name="company_name" /> <br>
+
+    <label for="username">Username:</label><br>
+    <input type="text" placeholder="username" name="username" /> <br>
+
+    <label for="email">Email Address:</label><br>
+    <input type="email" placeholder="email" name='email' /> <br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" placeholder="password" name="password" /> <br>
+
+    <label for="address">Address:</label><br>
+    <input type="text" placeholder="address" name="address" /> <br>
+
+    <button type="submit">Register</button>
+
+</form>
